@@ -1,5 +1,10 @@
 /*
 다형성과 가상 함수
+commit log
+study: 08-2 fix - [가상함수]08-3에 기반하여 가상함수를 도입후, 컨트롤러에서 포인터형과 다른 유도클래스의 함수를 호출할 수 있도록 수정
+study: 08-2 fix - [추상클래스][순수가상함수]Employee 클래스는 객체가 생성될 필요가 없는 기반 클래스이므로, 순수 가상함수를 도입하여 추상 클래스로 만들어 활용한다.
+    (겪은 에러 : const를 실수로 안붙여서 제대로 오버라이딩 안되었다.)
+
 */
 
 #include <iostream>
@@ -15,8 +20,8 @@ class Employee
         {
             strcpy(this->name, name);
         }
-        virtual int GetPay () {}
-        virtual void ShowSalaryInfo(){}
+        virtual int GetPay() const = 0;
+        virtual void ShowSalaryInfo() const = 0;
 
         void ShowYourName() const
         {
@@ -32,11 +37,11 @@ class PermanentWorker : public Employee
         PermanentWorker(char *name, int money)
         :Employee(name), salary(money)
         {}
-        int GetPay()const
+        virtual int GetPay()const
         {
             return salary;
         }
-        void ShowSalaryInfo() const
+        virtual void ShowSalaryInfo() const
         {
             ShowYourName();
             cout << "salary: "<<GetPay()<<endl<<endl;
@@ -61,7 +66,7 @@ public:
     {
         return workTime * payPerHour;
     }
-    void ShowSalaryInfo()
+    void ShowSalaryInfo() const
     {
         ShowYourName();
         cout <<"salary:"<< GetPay() << endl<<endl;
@@ -79,7 +84,7 @@ class SalesWorker : public PermanentWorker
         :PermanentWorker(name, pay), salesResult(0), bonusRatio(bonus)
         {}
     
-        int GetPay() const
+        virtual int GetPay() const
         {
             return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
         }
@@ -87,7 +92,7 @@ class SalesWorker : public PermanentWorker
         {
             salesResult += result;
         }
-        void showSalaryInfo() const
+        virtual void showSalaryInfo() const
         {
             ShowYourName();
             cout << "salary: " << GetPay() << endl<<endl;
