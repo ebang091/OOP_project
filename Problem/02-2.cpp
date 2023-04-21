@@ -1,5 +1,9 @@
 /*
 
+[Const 포인터와 Const 참조자. ]
+[참조자를 매개변수로 받는 함수, 참조자를 반환하는 함수]
+
+
 const int num = 12;
 이를 가리키는 포인터와 이 포인터를 참조하는 참조자를 선언 후,
 둘을 이용해 num 값을 출력해보자.
@@ -40,41 +44,35 @@ int main()
         int &num2 = RefFunction1(num1);
         
 
-        /*
-            int &ref = num1;
-            num2 = ref; 
-            와 동일한 동작. (단 ref는 RefFunction1 함수 내에서 임시로 생겼다가 사라진다. )
-        */
+       
         num1++;
         num2++;//이 때 num1의 값도 증가한다.!
         std::cout << num1<<"\n";
         std::cout << num2<<"\n";
+         /*
+            int &ref = num1;
+            num2 = ref; 
+            와 동일한 동작. (단 ref는 RefFunction1 함수 내에서 임시로 생겼다가 사라진다. )
+        */
     }
     {
         std::cout << " \n\ntest 2\n";
         int num1 = 1;
         int num2 = RefFunction1(num1);//참조자를 반환해도 int로 받으면 반환 참조자는 의미가 없어진다.
 
+        
+
+        
+
+        num1++;
+        num2+=100;//num2 만 증가한다!
+        std::cout << num1<<"\n";
+        std::cout << num2<<"\n";
         /*
         int &ref = num1;
         int num2 = ref; 와 같은 동작이 일어난 것이다. 
         */
 
-        
-
-        num1++;
-        num2+=100;
-        std::cout << num1<<"\n";
-        std::cout << num2<<"\n";
-    }
-    {
-        std::cout << "\n\ntest 3\n ";
-        int num = 1;
-        int *numPtr = &num;
-        int &numRef = *numPtr;
-        std::cout << *numPtr << " " << numRef << "\n";
-        
-        
         // 아래 함수와 변수 자료형의 차이점
         int num1 = 10;
         
@@ -85,8 +83,17 @@ int main()
         //int &num2 = RefFunction2(num1);//(아예 안됨)
     }
     {
+        //참조자와 포인터의 사용
+        std::cout << "\n\ntest 3\n ";
+        int num = 1;
+        int *numPtr = &num;
+        int &numRef = *numPtr;
+        std::cout << *numPtr << " " << numRef << "\n";
+        
+    }
+    {
 
-    //- const 참조자의 특징
+    //- const 참조자의 특징  :const 자료형을 참조할 때 반드시 const 키워드를 붙여야 함
     const int num = 1;
     //int &ref = num; //불가능
     const int &ref = num;//가능
@@ -94,7 +101,6 @@ int main()
     }
     {
         //- 잘못된 참조의 반환
-
         /*
         int& RefReturn(int num)
         {
@@ -105,7 +111,7 @@ int main()
         //-> 정수형을 받고서 참조자로 반환하면, 함수내 지역변수의 참조자를 반환하게 되므로
         //반환하자마자 소멸되므로 문제가 된다.
     }
-
+    
 }
 /*
 answer : 4 . 4
