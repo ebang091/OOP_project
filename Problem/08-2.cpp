@@ -1,4 +1,5 @@
 /*
+다형성과 가상 함수
 
 
 */
@@ -159,6 +160,6 @@ int main()
         handler.ShowTotalSalary();
     }
     {
-        
+
     }
 }
