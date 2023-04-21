@@ -6,6 +6,7 @@
 
 commit log
 study: 08-4 problem - First 클래스 포인터가 유도클래스 객체 Second를 동적할당하여 갖고 있을 때, First 소멸자만 호출이 되어서 실제로는 Second 클래스의 strTwo가 해제가 안되고 메모리 누수가 난다.
+
 */
 #include <iostream>
 #include <cstring>
@@ -22,7 +23,7 @@ class First
             strcpy(this->strOne, str);
             cout << "First : " << str <<endl;
         }
-        ~First()
+        virtual ~First()
         {
             cout << "~First()" <<endl;
             delete []strOne;
@@ -61,6 +62,7 @@ int main()
         First *f = new Second("HI I'm FIRST", "HI I'M SECOND");
         delete f;
         //소멸자가 First에 대해서만 호출되는 문제 발생!
+        //First 에 가상 소멸자를 대입하니 ~Second(), ~First() 모두 잘 호출된다!
 
     }
     
