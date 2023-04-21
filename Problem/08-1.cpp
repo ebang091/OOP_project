@@ -157,9 +157,8 @@ int main()
         handler.AddEmployee(new PermanentWorker("JUN",2000));
 
         handler.ShowAllSalaryInfo();
-        //handler.showTotalSalary();
+        handler.showTotalSalary();
 
-        
     }
     return 0;
 }
