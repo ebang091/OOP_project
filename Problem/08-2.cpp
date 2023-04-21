@@ -1,8 +1,7 @@
 /*
 다형성과 가상 함수
-
-
 */
+
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -16,6 +15,9 @@ class Employee
         {
             strcpy(this->name, name);
         }
+        virtual int GetPay () {}
+        virtual void ShowSalaryInfo(){}
+
         void ShowYourName() const
         {
             cout << "name : " << name << endl;
@@ -108,7 +110,7 @@ class EmployeeHandler
         {
             for(int i = 0; i < empNum; i++)
             {
-                // sum+=empList[i]->ShowSalaryInfo(); 
+                empList[i]->ShowSalaryInfo(); 
             }   
         }
         void ShowTotalSalary() const
@@ -116,7 +118,7 @@ class EmployeeHandler
             int sum = 0 ;
             for(int i = 0; i < empNum; i++)
             {
-                // sum+=empList[i]->GetPay();
+                sum+=empList[i]->GetPay();
             }
             cout << "salary sum:"<<sum<<endl;
         }

@@ -9,6 +9,8 @@ C++ 컴파일러는 포인터의 연산 가능성 여부를 판단 시 포인터
  - First 클래스의 MyFunc을 가상함수로 선언하자. 
     -> 오버라이딩하는 다른 유도클래스의 함수들도 모두 가상함수가 된다 .
 
+- 가상함수의 경우엔 함수가 호출되었을 때 포인터에 해당하는 함수가 아니라, 실제 객체의 함수를 호출한다!!
+
 */
 #include <iostream>
 using namespace std;
@@ -31,21 +33,21 @@ class First
 {
     public : 
         void FirstFunc() {cout << "FirstFunc" << endl;}
-        void MyFunc() { cout << "My first Func"<<endl;}
+        virtual void MyFunc() { cout << "My first Func"<<endl;}
 };
 
 class Second : public First
 {
     public : 
         void SecondFunc() { cout << "SecondFunc" << endl;}
-        void MyFunc() { cout << "My Second Func"<<endl;}
+        virtual void MyFunc() { cout << "My Second Func"<<endl;}
 };
 
 class Third : public Second
 {
     public : 
         void ThidFunc() {cout << "ThirdFunc" << endl;}
-        void MyFunc() { cout << "My Third Func"<<endl;}
+        virtual void MyFunc() { cout << "My Third Func"<<endl;}
 };
 
 
@@ -67,7 +69,7 @@ int main()
         cout << endl<<endl;
         tptr->MyFunc();
         sptr->MyFunc();
-        fptr->MyFunc();
+        fptr->MyFunc();//원래는 first가 출력되었는데, 가상함수로 바꾸고 나니 second가 출력된다!
         //fptr->SecondFunc();  -> 불가능!
    }
 }
