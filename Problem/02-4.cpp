@@ -3,6 +3,9 @@
 #include <ctime>
 #include <cstdlib>
 /*
+    C++의 표준함수 호출
+
+    
     문제 1.
     strlen
     strcat
@@ -36,8 +39,8 @@ int main()
     cout << str << "\n";
     cout << strcmp(str, str2) <<endl;
 
-/////////////////////////////////////////
-int num;
+
+    int num;
     srand((unsigned int) time(NULL));
     for(int i = 0; i < 5; i++)
     {
@@ -46,5 +49,4 @@ int num;
         cout << num << endl;
     }
 
-    
 }
