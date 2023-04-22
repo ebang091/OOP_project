@@ -6,6 +6,7 @@
 
 commit log
 study: 08-4 problem - First 클래스 포인터가 유도클래스 객체 Second를 동적할당하여 갖고 있을 때, First 소멸자만 호출이 되어서 실제로는 Second 클래스의 strTwo가 해제가 안되고 메모리 누수가 난다.
+study: 08-4 fix - First 클래스의 소멸자를 가상 소멸자로 선언함으로써 동적할당시에도 객체에 맞게 소멸자가 호출될 수 있도록 한다.
 
 */
 #include <iostream>
